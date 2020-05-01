@@ -65,11 +65,11 @@
 		<h2>Message Board</h2>
 		<form action="{{ url_for('message_new') }}" method="post" class="clearfix">
 			<textarea name="message" placeholder="New Message"></textarea>
-			<input type="submit" value="Speichern" class="button main">
+			<input type="submit" value="Post" class="button main">
 		</form>
 		<ul class="messages-list list">
 			{% for message in messages %}
-				<li class="{{ loop.cycle('even', 'odd') }}"><a href="{{ url_for('wiki_page', key=message.author.name + '_' + message.author.last_name) }}">{{ message.author.name }}</a>: {{ message.message }}</li>
+			<li class="{{ loop.cycle('even', 'odd') }}"><a href="{{ url_for('wiki_page', key=message.author.name) }}">{{ message.author.name }}</a>: {{ message.message }}</li>
 			{% endfor %}
 		</ul>
 

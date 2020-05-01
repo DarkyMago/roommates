@@ -36,10 +36,9 @@ def setup(step):
 			g.db = connect_db()
 
 			# ADD THE USER
-			g.db.execute('INSERT INTO users (name, last_name, mail, birthday, password) VALUES (?, ?, ?, ?, ?)', [
+			g.db.execute('INSERT INTO users (name, login, birthday, password) VALUES (?, ?, ?, ?)', [
 				request.form["name"],
-				request.form["last_name"],
-				request.form["mail"],
+				request.form["login"],
 				request.form["birthday"],
 				bcrypt.hashpw(request.form["password"].encode('utf-8'), bcrypt.gensalt())
 			])

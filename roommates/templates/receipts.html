@@ -18,7 +18,7 @@
 					<td><a href="{{ url_for('wiki_page', key=receipt.title|replace(' ', '_')) }}">{{ receipt.title }}</a></td>
 					<td>{{ receipt.amount|currency }} {{ config.CURRENCY }}</td>
 					<td>{{ receipt.user }}</td>
-					<td>{{ receipt.date.day }}. {{ receipt.date.month }}. {{ receipt.date.year }}</td>
+					<td>{{ "%02d" | format(receipt.date.day) }}/{{ "%02d" | format(receipt.date.month) }}/{{ receipt.date.year }}</td>
 					<td class="edit"><a href="{{ url_for('receipts_edit', id=receipt.id) }}">Edit</a></td>
 				</tr>
 			{% endfor %}

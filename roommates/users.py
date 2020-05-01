@@ -24,15 +24,14 @@ def users_add():
 			if value == '':
 				flash('Please fill out all the fields.', 'error')
 				return render_template('users_add.html', values=request.form)
-		g.db.execute('INSERT INTO users (name, last_name, mail, birthday, password) VALUES (?, ?, ?, ?, ?)', [
+		g.db.execute('INSERT INTO users (name, login, birthday, password) VALUES (?, ?, ?, ?)', [
 				request.form["name"],
-				request.form["last_name"],
-				request.form["mail"],
+				request.form["login"],
 				request.form["birthday"],
 				bcrypt.hashpw(request.form["password"].encode('utf-8'), bcrypt.gensalt())
 			])
 		g.db.commit()
-		flash('The new user "' + request.form['name'] + ' ' + request.form['last_name'] + '" has been added.')
+		flash('The new user "{}" has been added.'.format(request.form['name']))
 	return render_template('users_add.html', values=[])
 
 

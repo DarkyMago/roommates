@@ -18,7 +18,7 @@
 					<td><a href="{{ url_for('wiki_page', key=purchase.title|replace(' ', '_')) }}">{{ purchase.title }}</a></td>
 					<td>{{ purchase.amount|currency }} {{ config.CURRENCY }}</td>
 					<td>{{ purchase.current_value()|currency }} {{ config.CURRENCY }}</td>
-					<td>{{ purchase.date.day }}. {{ purchase.date.month }}. {{ purchase.date.year }}</td>
+					<td>{{ "%02d" | format(purchase.date.day) }}/{{ "%02d" | format(purchase.date.month) }}/{{ purchase.date.year }}</td>
 					<td class="edit"><a href="{{ url_for('purchases_edit', id=purchase.id) }}">Edit</a></td>
 				</tr>
 			{% endfor %}

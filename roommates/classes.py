@@ -14,7 +14,7 @@ class User:
 		return None
 
 	def __str__(self):
-		return self.name + ' ' + self.last_name
+		return self.name
 
 	def __repr__(self):
 		return self.__str__()
@@ -192,7 +192,7 @@ class Purchase:
 		return self.author.name + ': ' + self.purchase
 	def current_value(self):
 		# today = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
-		today = arrow.now('Europe/Berlin').replace(hour=0, minute=0, second=0, microsecond=0)
+		today = arrow.now('Canada/Eastern').replace(hour=0, minute=0, second=0, microsecond=0)
 
 		temp_date = self.date
 		months = 0
@@ -202,7 +202,7 @@ class Purchase:
 			return self.amount
 
 		while temp_date < today:
-			temp_date = temp_date.replace(months=+1)
+			temp_date = temp_date.shift(months=+1)
 			months += 1
 
 		if months >= 30:

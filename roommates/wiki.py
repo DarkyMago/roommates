@@ -5,7 +5,7 @@ from roommates.classes import *
 from flask import session, redirect, url_for, g, request, flash, render_template, send_from_directory
 import bcrypt
 import os
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 import hashlib
 from datetime import datetime
 

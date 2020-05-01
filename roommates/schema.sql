@@ -49,8 +49,7 @@ CREATE TABLE "uploads" (
 CREATE TABLE "users" (
 "id" INTEGER PRIMARY KEY AUTOINCREMENT,
 "name" TEXT,
-"last_name" TEXT,
-"mail" TEXT,
+"login" TEXT,
 "birthday" TEXT,
 "password" TEXT
 );

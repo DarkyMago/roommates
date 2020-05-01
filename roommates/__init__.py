@@ -55,13 +55,10 @@ def index():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST':
-		user = query_db('SELECT * FROM users WHERE mail = ?', [request.form['mail']], one=True)
-
-		print(type(user))
-		print(str(user['password']))
+		user = query_db('SELECT * FROM users WHERE login = ?', [request.form['login']], one=True)
 
 		if user is None:
-			flash('Login nicht erfolgreich.', 'error')
+			flash('Login/password incorrect', 'error')
 			return render_template('login.html')
 		else:
 			if bcrypt.hashpw(
@@ -72,7 +69,7 @@ def login():
 				flash('You are now logged in.')
 				return redirect(url_for('index'))
 			else:
-				flash('Login nicht erfolgreich.', 'error')
+				flash('Login/password incorrect', 'error')
 				return render_template('login.html')
 	else:
 		return render_template('login.html')
