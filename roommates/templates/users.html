@@ -12,6 +12,11 @@
 					<td><a href="{{ url_for('wiki_page', key=user.name) }}">{{ user.name }}</a></td>
 					<td>{{ user.login }}</td>
 					<td>{{ user.days_to_birthday() }} days until birthday</td>
+					{% if current_id == user.id %}
+					<td class="edit"><a href="{{ url_for('users_edit', id=user.id) }}">Edit</a></td>
+					{% else %}
+					<td></td>
+					{% endif %}
 				</tr>
 			{% endfor %}
 		</table>

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<div class="box centered">
+		<h2>Edit Profile</h2>
+		<form action="{{ url_for('users_edit', id=values.id) }}" method="post">
+			<label for="name">Display name</label>
+			<input type="text" name="name" placeholder="Display Name" value="{{ values.name }}">
+			<label for="login">Login</label>
+			<input type="login" name="login" placeholder="Login" value="{{ values.login }}">
+			<label for="birthday">Birthday</label>
+			<input type="text" class="datepicker" name="birthday" placeholder="Birthday (YYYY-MM-DD)" value="{{ values.birthday }}">
+			<label for="password">New password</label>
+			<input type="password" name="password" placeholder="Password" value="">
+			<input type="password" name="confirm" placeholder="Confirm password" value="">
+			<input type="submit" class="button main" value="Save">
+			<input type="hidden" name="id" value="{{ values.id }}">
+		</form>
+	</div>
+{% endblock %}
