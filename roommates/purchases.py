@@ -39,7 +39,7 @@ def purchases_edit(id):
 		for key, value in request.form.items():
 			if value == '':
 				flash('Please fill out all the fields.', 'error')
-				return render_template('purchases_add.html', values=request.form)
+				return render_template('purchases_edit.html', values=request.form)
 		amount = check_for_commas( request.form['amount'] )
 		g.db.execute('UPDATE purchases SET title=?, amount=?, date=? WHERE id=?', [
 				request.form["title"],
