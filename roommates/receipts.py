@@ -20,8 +20,8 @@ def receipts_add():
 	if request.method == 'POST':
 		for key, value in request.form.items():
 			if value == '':
-				flash('Please fill out all the fields.', 'error')
-				return render_template('receipts_add.html', values=request.form)
+				flash('Please fill out all the fields. Missing {}'.format(key), 'error')
+				return render_template('receipts_add.html', values=request.form, users=list_users())
 		amount = check_for_commas( request.form['amount'] )
 		g.db.execute('INSERT INTO receipts (title, amount, user, date) VALUES (?, ?, ?, ?)', [
 				request.form['title'],

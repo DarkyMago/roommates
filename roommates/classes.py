@@ -42,12 +42,16 @@ class User:
 		return expenses
 
 	def spending(self):
-		try:
-			spending_sum = query_db('SELECT SUM(amount) AS sum FROM receipts', one=True)['sum']
-			self._spending =  query_db('SELECT SUM(amount) AS sum FROM receipts WHERE user = ?', [self.id], one=True)['sum'] - (spending_sum/count_users())
-			return self._spending
-		except TypeError:
+		spending_sum = query_db('SELECT SUM(amount) AS sum FROM receipts', one=True)['sum']
+		if spending_sum is None:
 			return 0
+
+		spending_user = query_db('SELECT SUM(amount) AS sum FROM receipts WHERE user = ?', [self.id], one=True)['sum']
+		if spending_user is None:
+			spending_user = 0
+
+		self._spending = spending_user - (spending_sum/count_users())
+		return self._spending
 
 	def errand(self):
 
